@@ -38,7 +38,7 @@ public class CollectionsPerformanceTest {
 
       measures = new ArrayList<>(); // clear
 
-      System.out.println("BitSet test");
+      System.out.println("\nBitSet test");
       start = System.nanoTime();
       for (int i = 0; i < 10; i++) {
          bitSetTest();
@@ -55,7 +55,7 @@ public class CollectionsPerformanceTest {
       }
       for (int i = 0; i < 10; i++) {
          final int random = Math.abs(new Random().nextInt()) % 11; // random between 0 and 10
-         bitSet.get(random);
+         bitSet.stream().filter(one -> one == random).findAny();
       }
    }
 
@@ -63,7 +63,7 @@ public class CollectionsPerformanceTest {
       Set<Integer> hashSet = Sets.newHashSet(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
       for (int i = 0; i < 100; i++) {
          final int random = Math.abs(new Random().nextInt()) % 11; // random between 0 and 10
-         hashSet.stream().filter(one -> one.equals(random)).findAny().orElse(null);
+         hashSet.contains(random);
       }
    }
 
@@ -71,7 +71,7 @@ public class CollectionsPerformanceTest {
       final List<Integer> list = Arrays.asList(0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100);
       for (int i = 0; i < 100; i++) {
          final int random = Math.abs(new Random().nextInt()) % 11; // random between 0 and 10
-         list.get(random);
+         list.contains(random);
       }
    }
 
